@@ -11,8 +11,11 @@ A cardiac arrhythmia is any abnormal heart rate or rhythm. It can be classified 
 # Objective:
 
 Machine learning algorithms are extensively used in developing decision support systems in medical field.
-Through this project, we intend to use supervised machine learning algorithms to analyse the various features of the electrocardiogram (ECG) of the patients and other physiological characteristics. The Cardiac Arrhythmia data set publicly available on UCI Machine Learning Repository has been utilized for developing the classifiers. The objective of this project to build 2 different models.
+Through this project, we intend to use supervised machine learning algorithms to analyse the various features of the electrocardiogram (ECG) of the patients and other physiological characteristics. The Cardiac Arrhythmia data set publicly available on UCI Machine Learning Repository has been utilized for developing the classifiers. 
+The objective of this project to build 2 different models.
+
 a. Model 1- Model for detecting the presence of Arrythmia.
+
 b. Model 2- Model for classifying Arrythmia into different classes.
 
 # Scope of Work:
@@ -37,4 +40,26 @@ The data belongs to the ECG readings and some of the physical description of 451
 There are a total of 279 attributes (206 linear and 73 nominal) and a single output which is categorical. Each of 451 patients are divided into 16 classes based on the value of their attributes.
 
 ![Image1](https://github.com/mustafashabbir10/Cardiac-Arrhythmia/blob/master/Images/Image1.PNG)
+
+![Image2](https://github.com/mustafashabbir10/Cardiac-Arrhythmia/blob/master/Images/Image2.PNG)
+
+## Reasoning of Approach:
+
+We have implemented models for two purposes.
+
+  a. Detection of cardiac arrhythmia
+  b. Classification of cardiac arrhythmia.
+  
+In the model for detection, the data points have been classified into two classes- “Normal” & “Arrhythmia”. This model only identifies if the patient is normal (class 1) or suffers from any form of arrhythmia (class 2 to 16).
+The model for classification classified the patient into one of 16 classes, with class 1 representing normal and classes 2 to 16 representing a condition of cardiac arrhythmia. The arrhythmia class will be treated as the ‘Positive’ class.
+The following describes the step-by-step approach for implementing the two models.
+
+### Data Cleaning
+
+The data set comprises of 279 attributes of 451 patients. The attributes are as indicated in the section above.
+As the first step, the missing values were replaced with null values. Then the columns with same value in all the 451 rows were identified. 17 attributes were found to have a single value for all the data points. As these columns do not explain any variation between the data points and response, they are irrelevant and need not be considered for further analysis. Hence, they were deleted from the data set.
+
+In the next step, we identified the missing values in the data set.
+It was observed that five columns had missing values.
+
 
