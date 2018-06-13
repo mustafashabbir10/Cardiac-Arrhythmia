@@ -35,4 +35,6 @@ To compare the results obtained from various models and understand the behaviour
 ## Data Description:
 The data belongs to the ECG readings and some of the physical description of 451 patients.
 There are a total of 279 attributes (206 linear and 73 nominal) and a single output which is categorical. Each of 451 patients are divided into 16 classes based on the value of their attributes.
+
 ![Image1](https://github.com/mustafashabbir10/Cardiac-Arrhythmia/blob/master/Images/Image1.PNG)
+
