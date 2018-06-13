@@ -284,6 +284,113 @@ This is snippet of the fitted decision tree. Splitting criteria for decision tre
 ### XG-Boost:
 Similar to Gradient Boosting in principle, xgboost uses a more regularized model formalization so as to control over-fitting.
 
+#### Model 1:
+Extreme gradient boosting does a very good job in detecting the presence of arrythmia. 
+
+![Image25](https://github.com/mustafashabbir10/Cardiac-Arrhythmia/blob/master/Images/Image25.PNG)
+
+The area under the curve for binary classification model is 0.8398.
+
+#### Model 2:
+We can see from above that extreme gradient boosting classifies the test observations almost correctly with a test accuracy of 84%.
+The algorithm applies regularization in addition to boosting by setting parameters like learning rate, subsampling and L2 term on weights to prevent overfitting by reducing variance. We select optimal values of hyperprameters by using a randomized search. Running grid search would be very expensive as we tune seven hyperparameters that govern the tree architecture. There is relatively high specificity and low sensitivity for all classes except class 1 i.e the model correctly identifies those observations that do not belong to these classes. The sensitivity for classes 2 & 3 is low, classes 4 & 5 is moderate while class 1 is high. Sensitivity refers to true positive rate which is highly desirable in cardiac arrhythmia prediction.
+
+![Image26](https://github.com/mustafashabbir10/Cardiac-Arrhythmia/blob/master/Images/Image26.PNG)
+
+### Neural Network:
+Neural network is a machine learning algorithm that can perform supervised and unsupervised learning tasks. However, in our project, neural network was employed for classification in model 1 and 2. A neural network tries to mimic the functioning of neurons in the human brain. Neural network comprises of an input, output and hidden layers. Each of these layers have processing units referred as neurons. The input(predictors) are fed to the neurons, weights are assigned to the inputs to minimize a predefined loss function, in classification often the misclassification rate. This loss function is minimized using nonlinear optimization models. In this project, library caret, nnet was used in implementing the neural network model. The test dataset was cross-validated for best model selection based on classification accuracy.
+
+#### Model 1:
+The optimized hyperparameter values are depth = 7 and decay = 0.7. Depth refers to the number of total layers in the model including input and output layers. Decay is a parameter of the optimization algorithm used in the NN model. Neural network does a decent job in predicting arrhythmic class with a test accuracy of 77.8 and sensitivity of arrhythmic class is 0.725.
+
+![Image27](https://github.com/mustafashabbir10/Cardiac-Arrhythmia/blob/master/Images/Image27.PNG)
+
+#### Model 2:
+The final values used for the multi-classification model were depth = 7 and decay = 0.5. Here, we get the accuracy of 71.15%. The sensitivity of classes 1, 3 and 4 is good but that of class 2 and 4 is poor. Whereas, the specificity for class 1 is low.
+
+![Image28](https://github.com/mustafashabbir10/Cardiac-Arrhythmia/blob/master/Images/Image28.PNG)
+
+## Comparision:
+
+The below Table and Plot shows the accuracy obtained by different approaches used by the team and the improvement gained by used different methods.
+
+### Table:
+
+![Image29](https://github.com/mustafashabbir10/Cardiac-Arrhythmia/blob/master/Images/Image29.PNG)
+
+### Plot:
+
+Accuracy V/s Method used (Model-1 and Model-2)
+
+![Image30](https://github.com/mustafashabbir10/Cardiac-Arrhythmia/blob/master/Images/Image30.PNG)
+
+## Interpretation:
+  1. In general, model 1(model for detection) performs better in terms of accuracy and sensitivity, the critical parameters. This could      be because the initial data set upon which we built the classification model was heavily skewed towards class 1. By merging the          classes, the distribution of classes becomes almost even making it easier to separate the classes with the available information.        Certain classes in model 2(model for classification) have very few instances making it difficult to predict them.
+  
+  2. All the models classify class 1 (normal) with reasonable accuracy. This could be because more than 50% of the instances belong to        class 1 and hence sufficient information is available for the model to learn its features.
+  
+  3. Majority of the misclassified instances of class 2 in many models have been classified to class 1(normal) which is highly                undesirable. This could be because there may not be strong features that could distinguish this class from Class 1.
+  
+  4. We have observed that many cases of class 2 arrhythmia have been misclassified into the normal class. Hence, it may be noted that        there is only a small margin separating the normal class from class 2 arrhythmia.
+  
+  5. Class 3 has the least number of instances. But almost all the models classify those instances with comparatively high sensitivity.      So it is reasonable to conclude that class 3 (Myocardial Infarction), has very distinct features which make it easier for the model      to identify them.
+  
+  6. In the classification model (model 2), it is observed that only Random forest and XgBoost are able to classify class 4 with high        accuracy (75% for both). This could be because, unlike the other algorithms, the random forest and Xgboost reduces the variance by      averaging the output from ensemble models.
+  
+  7. Since, a large number of predictors are used to fit a model on a very small number of observations,the models suffer from high          variance. Random Forest and XgBoost are exceptions.
+
+### Model 1:
+In the end, we see that the highest accuracy is 85% for Support Vector Classifier followed by Tree models: Extreme Gradient Boosting Tree and Random Forest (83% and 82% resp.). We get the highest sensitivity of 0.82 for Random Forest which increases to 0.90 by lowering the threshold to 0.3.
+
+![Image31](https://github.com/mustafashabbir10/Cardiac-Arrhythmia/blob/master/Images/Image31.PNG)
+
+The ROC curve for the best performing algorithms is shown where:
+##### ROC 1: 
+    Red <- Logistic Regression with Ridge Regression (AUC=0.8219),
+    Green <- Random Forest (AUC=0.8320),
+    Blue <- SVM-Radial (AUC=0.8202),
+    
+##### ROC 2: 
+    Black <- Extreme Gradient Boosting Trees (AUC=0.8398)
+
+### Model 2:
+Here, the highest accuracy is 84% for Extreme Gradient Boosting Tree and 81% for Random Forest. We average the sensitivity for the arrhythmic classes where the highest value is 0.69 for Extreme Gradient Boosting Tree followed by 0.82 for Random Forest. We also observe that in tree-based models, work well for model 1 and model 2.
+
+## Model Comparision:
+
+![Image32](https://github.com/mustafashabbir10/Cardiac-Arrhythmia/blob/master/Images/Image32.PNG)
+
+# Conclusion:
+
+    1. Through this project, we aimed to detect and classify cardiac arrhythmia into classes. We have
+    obtained a very high accuracy with the arrhythmia detection model (model 1). Also, by reducing the
+    threshold, the sensitivity of the detection models can be increased further.
+    
+    2. For the purpose of detection, the models can be utilized as a decision support system and serves the
+    objective of the project. However, as far as classification (model 2) to the different classes of
+    arrhythmia is concerned, with the given imbalanced data set that is heavily skewed towards class 1,
+    obtaining a very accurate classification of all arrhythmia classes is not feasible. But since we have
+    identified a set of strong predictors that make sense from a physiological point of view, it can be
+    concluded that the models will definitely perform better if trained on a bigger data set that has more
+    number of rare class instances.
+    
+    3. A key result we obtained from the binary classification is that a heart rate less than 51 is a clear
+    indication of arrhythmia. So, for patients with a heart rate less than 51, if the model classifies a
+    patient to normal class, it could potentially be a case of misclassification and should be looked into.
+    
+    4. Also, as we expected, personal characteristics like height, age, sex etc. did not make any considerable
+    impact.
+    
+    5. As stated throughout this report, the main intention of this project was to develop an auxiliary
+    decision support system to assist medical professionals in detecting and classifying arrhythmia. As far
+    as detection is concerned, the model 1 can be used as a decision support system that may guide the
+    professionals in confirming the presence of arrhythmia with a fairly high certainty. So as to have an
+    efficient classification model (model 2) in place, more data points of the rare classes maybe needed.
+    
+    6. Since we have utilized only the readings of ECG as the features, adding other features that a medical
+    professional may utilize in his diagnosis may improve the performance of the model.
+
+
 
 
 
